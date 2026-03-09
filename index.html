@@ -1,81 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>StudyFlow</title>
+<title>StudyFlow Project</title>
 
 <style>
-
 body{
-font-family: Arial;
+font-family: Arial, sans-serif;
+margin:40px;
 background:#f5f5f5;
-margin:0;
+color:#222;
 }
 
-header{
-background:#5bc0de;
-padding:20px;
-text-align:center;
-font-size:40px;
-font-weight:bold;
-color:white;
+h1{
+font-size:32px;
 }
 
-nav{
-background:#ddd;
-padding:10px;
-text-align:center;
-}
-
-nav button{
-margin:5px;
-padding:8px 15px;
-}
-
-.container{
-display:flex;
-padding:20px;
-gap:20px;
-}
-
-.left{
-width:250px;
-}
-
-.right{
-flex:1;
-}
-
-.card{
+section{
 background:white;
-padding:15px;
-margin-bottom:15px;
-border-radius:10px;
-box-shadow:0 0 5px rgba(0,0,0,0.2);
-}
-
-.task{
-background:#eee;
-padding:10px;
-margin:10px 0;
+padding:20px;
+margin-top:20px;
 border-radius:8px;
 }
 
-.completed{
-text-decoration:line-through;
-opacity:0.6;
-}
-
-.progress{
-background:#eee;
-border-radius:10px;
-overflow:hidden;
-}
-
-.bar{
-height:20px;
-background:#5cb85c;
-width:0%;
+h2{
+margin-top:0;
 }
 
 </style>
@@ -84,145 +33,57 @@ width:0%;
 
 <body>
 
-<header>
-StudyFlow
-</header>
+<h1>StudyFlow</h1>
+<p>Simple productivity website for students.</p>
 
-<nav>
-<button>Tasks</button>
-<button>Calendar</button>
-<button>Settings</button>
-</nav>
+<section>
+<h2>1. Project Idea</h2>
+<p>
+StudyFlow helps students organize study sessions, focus on tasks,
+and track their productivity.
+</p>
+</section>
 
-<div class="container">
+<section>
+<h2>2. Problem</h2>
+<p>
+Many students struggle with time management and staying focused
+while studying.
+</p>
+</section>
 
-<div class="left">
+<section>
+<h2>3. Solution</h2>
+<p>
+This website provides a simple system to plan study tasks
+and improve concentration.
+</p>
+</section>
 
-<div class="card">
-<h3>Add Task</h3>
+<section>
+<h2>4. Target Users</h2>
+<p>
+Students, school pupils, and anyone who wants to improve
+their study routine.
+</p>
+</section>
 
-<input id="subject" placeholder="Subject"><br><br>
+<section>
+<h2>5. Technologies</h2>
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>GitHub Pages for hosting</li>
+</ul>
+</section>
 
-<input id="desc" placeholder="Task"><br><br>
-
-<input id="date" type="date"><br><br>
-
-<button onclick="addTask()">Add</button>
-
-</div>
-
-<div class="card">
-
-<h3>Complete Task</h3>
-
-<button onclick="completeTask()">Mark selected done</button>
-
-</div>
-
-</div>
-
-
-<div class="right">
-
-<div class="card">
-
-<h3>Tasks</h3>
-
-<div id="taskList"></div>
-
-</div>
-
-
-<div class="card">
-
-<h3>Completed tasks</h3>
-
-<div class="progress">
-<div id="progressBar" class="bar"></div>
-</div>
-
-<p id="progressText">0% completed</p>
-
-</div>
-
-</div>
-
-</div>
-
-<script>
-
-let tasks = []
-let selected = null
-
-function addTask(){
-
-let subject = document.getElementById("subject").value
-let desc = document.getElementById("desc").value
-let date = document.getElementById("date").value
-
-let task = {
-subject,
-desc,
-date,
-done:false
-}
-
-tasks.push(task)
-
-render()
-
-}
-
-function render(){
-
-let list = document.getElementById("taskList")
-list.innerHTML = ""
-
-tasks.forEach((t,i)=>{
-
-let div = document.createElement("div")
-
-div.className = "task"
-
-if(t.done) div.classList.add("completed")
-
-div.innerHTML = `
-<b>${t.subject}</b><br>
-${t.desc}<br>
-${t.date}
-`
-
-div.onclick = ()=>{ selected = i }
-
-list.appendChild(div)
-
-})
-
-updateProgress()
-
-}
-
-function completeTask(){
-
-if(selected===null) return
-
-tasks[selected].done = true
-
-render()
-
-}
-
-function updateProgress(){
-
-let done = tasks.filter(t=>t.done).length
-let percent = tasks.length ? Math.round(done/tasks.length*100) : 0
-
-document.getElementById("progressBar").style.width = percent + "%"
-document.getElementById("progressText").innerText = percent + "% completed"
-
-}
-
-</script>
+<section>
+<h2>6. Future Improvements</h2>
+<p>
+In the future the platform could include timers,
+task tracking, and progress analytics.
+</p>
+</section>
 
 </body>
 </html>
